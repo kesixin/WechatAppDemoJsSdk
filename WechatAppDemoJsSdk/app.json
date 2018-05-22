@@ -1,12 +1,33 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs"
+    "pages/user/index",
+    "pages/login/index",
+    "pages/register/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
-  }
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#3891f8",
+    "navigationBarTitleText": "增删改查-小程序Demo",
+    "navigationBarTextStyle": "#fff"
+  },
+  "tabBar":{
+    "color":"#7A7E83",
+    "selectedColor":"#318efb",
+    "borderStyle": "#3891f8",
+    "backgroundColor": "#ffffff",
+    "list":[
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "images/icon_API.png",
+        "selectedIconPath": "images/icon_API_HL.png",
+        "text": "用户操作"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "images/icon_API.png",
+        "selectedIconPath": "images/icon_API_HL.png",
+        "text": "用户操作"
+      }
+    ]
+  }   
 }
