@@ -1,8 +1,11 @@
 {
   "pages":[
     "pages/user/index",
-    "pages/login/index",
-    "pages/register/index"
+    "pages/user/login/index",
+    "pages/user/register/index",
+    "pages/user/smsLogin/index",
+    "pages/user/userInfo/index",
+    "pages/user/checkEmail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

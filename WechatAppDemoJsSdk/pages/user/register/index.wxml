@@ -1,5 +1,5 @@
-<import src="../../style/header" />
-<import src="../../style/footer" />
+<import src="../../../style/header" />
+<import src="../../../style/footer" />
 
 
 <view class="page__bd">
@@ -14,6 +14,22 @@
         </view>
         <view class="weui-cell__bd">
             <input class="weui-input" placeholder="请输入您的账户名" name="username" />
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">邮箱</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入您的邮箱" name="email" />
+          </view>
+      </view>
+      <view class="weui-cell weui-cell_input">
+        <view class="weui-cell__hd">
+          <view class="weui-label">电话号码</view>
+        </view>
+        <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="请输入您的电话号码" name="phone" />
           </view>
       </view>
       <view class="weui-cell weui-cell_input">
