@@ -1,0 +1,16 @@
+<import src="../../../style/header.wxml" />
+<import src="../../../style/footer.wxml" />
+<template is="head" />
+
+<view class="container">
+  <view class="page-body">
+    <view class="btn-area">
+      <loading hidden="{{loading}}">
+        图片上传中...
+      </loading>
+      <button type="primary" bindtap="upload">图片上传（支持多张）</button>
+
+    </view>
+  </view>
+  <template is="foot" />
+</view>

@@ -35,6 +35,7 @@ Page({
         return false;
       }else if(!smsCode){
         common.showTip("请输入验证码","loading");
+        return false;
       }
 
       Bmob.User.signOrLoginByMobilePhone(phone,smsCode).then(res=>{

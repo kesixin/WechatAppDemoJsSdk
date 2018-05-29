@@ -5,7 +5,12 @@
     "pages/user/register/index",
     "pages/user/smsLogin/index",
     "pages/user/userInfo/index",
-    "pages/user/checkEmail/index"
+    "pages/user/checkEmail/index",
+    "pages/user/resetPswd/index",
+    "pages/user/upload/index",
+    "pages/user/updateInfo/index",
+    "pages/user/code/index",
+    "pages/interface/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,10 +31,10 @@
         "text": "用户操作"
       },
       {
-        "pagePath": "pages/user/index",
-        "iconPath": "images/icon_API.png",
-        "selectedIconPath": "images/icon_API_HL.png",
-        "text": "用户操作"
+        "pagePath": "pages/interface/index",
+        "iconPath": "images/list.png",
+        "selectedIconPath": "images/list1.png",
+        "text": "常用接口"
       }
     ]
   }   
