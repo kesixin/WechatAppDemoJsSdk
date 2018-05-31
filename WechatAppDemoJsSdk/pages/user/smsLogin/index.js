@@ -1,4 +1,4 @@
-var Bmob = require("../../../dist/Bmob-1.4.2.min.js");
+var Bmob = require("../../../dist/Bmob-1.4.4.min.js");
 var common = require("../../../utils/common.js");
 var that;
 Page({

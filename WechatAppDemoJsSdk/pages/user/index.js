@@ -7,9 +7,8 @@ var grids = [
   {"name":"获取用户登录信息","ico":"getInfo.png","url":"../user/userInfo/index"},
   {"name": "验证Email", "ico": "checkEmail.png", "url": "../user/checkEmail/index" },
   {"name": "密码重置", "ico": "pswdreset.png", "url": "../user/resetPswd/index" },
-  { "name": "上传图片", "ico":"pic.png","url":"../user/upload/index"},
   {"name":"更新用户信息","ico":"updateInfo.png","url":"../user/updateInfo/index"},
-  { "name": "生成二维码", "ico": "code.png", "url": "../user/code/index" }
+  {"name": "获取openId", "ico": "getOpenid.png", "url": "../user/getOpenid/index" },
   
 ];
 

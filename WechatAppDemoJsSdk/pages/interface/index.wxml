@@ -1,5 +1,4 @@
 <import src="../../style/header.wxml" />
-
 <view class="page">
   <template is="head"></template>
   <view class="page__bd">

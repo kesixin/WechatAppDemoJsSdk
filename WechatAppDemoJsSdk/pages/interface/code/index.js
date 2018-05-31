@@ -1,5 +1,5 @@
-var Bmob= require("../../../dist/Bmob-1.4.2.min.js");
-
+var Bmob= require("../../../dist/Bmob-1.4.4.min.js");
+var common = require("../../../utils/common.js");
 Page({
 
   /**
@@ -17,7 +17,11 @@ Page({
     var path = event.detail.value.path;
     var width = event.detail.value.width;
     var that = this;
-    let qrData = { path: 'path', width: width, type: 1 };
+    if(path == ""){
+      common.showTip("请输入路径","loading");
+      return false;
+    }
+    let qrData = { path: path, width: width, type: 1 };
     Bmob.generateCode(qrData).then(function (res) {
       console.log(res);
       that.setData({

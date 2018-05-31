@@ -1,7 +1,7 @@
 <import src="../../../style/header.wxml" />
 <import src="../../../style/footer.wxml" />
 <template is="head" />
-
+<view class="page-section-title notice">图片上传成功后可以在Bmob控制台->应用->素材 里面查看</view>
 <view class="container">
   <view class="page-body">
     <view class="btn-area">

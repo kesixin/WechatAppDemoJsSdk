@@ -7,10 +7,17 @@
     "pages/user/userInfo/index",
     "pages/user/checkEmail/index",
     "pages/user/resetPswd/index",
-    "pages/user/upload/index",
     "pages/user/updateInfo/index",
-    "pages/user/code/index",
-    "pages/interface/index"
+    "pages/user/getOpenid/index",
+    "pages/interface/index",
+    "pages/interface/upload/index",
+    "pages/interface/code/index",
+    "pages/interface/checkContent/index",
+    "pages/interface/getToken/index",
+    "pages/interface/template/index",
+    "pages/interface/addAddress/index",
+    "pages/interface/select/index",
+    "pages/interface/chatroom/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
