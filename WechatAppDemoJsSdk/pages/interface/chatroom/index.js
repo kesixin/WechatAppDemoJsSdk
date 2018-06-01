@@ -321,17 +321,17 @@ Page({
 function welcome(that) {
 
   var currentUser = Bmob.User.current();
-  var User = Bmob.Object.extend("_User");
-  var UserModel = new User();
-
+  var pointer = Bmob.Pointer("_User");
+  
   var objectId = that.data.objectId;
 
-  //添加一条记录
-  var Diary = Bmob.Object.extend("welcome");
-  var diary = new Diary();
+  var poiID = pointer.set(objectId);
 
-  UserModel.id = objectId;
-  diary.set("own", UserModel);
+
+  //添加一条记录
+  var diary = Bmob.Query("welcome");
+
+  diary.set("own", poiID);
   diary.set("online", 0);
   diary.set("nickName", currentUser.get("nickName"));
   //添加数据，第一个入口参数是null
