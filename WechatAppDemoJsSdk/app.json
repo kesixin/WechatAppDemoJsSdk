@@ -13,11 +13,17 @@
     "pages/interface/upload/index",
     "pages/interface/code/index",
     "pages/interface/checkContent/index",
+    "pages/interface/pay/index",
     "pages/interface/getToken/index",
     "pages/interface/template/index",
     "pages/interface/addAddress/index",
     "pages/interface/select/index",
-    "pages/interface/chatroom/index"
+    "pages/interface/chatroom/index",
+    "pages/database/index",
+    "pages/database/detail/index",
+    "pages/center/index",
+    "pages/center/release/index",
+    "pages/center/feedback/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -42,6 +48,18 @@
         "iconPath": "images/list.png",
         "selectedIconPath": "images/list1.png",
         "text": "常用接口"
+      },
+      {
+        "pagePath": "pages/database/index",
+        "iconPath": "images/database.png",
+        "selectedIconPath": "images/database1.png",
+        "text": "数据库操作"
+      },
+      {
+        "pagePath": "pages/center/index",
+        "iconPath": "images/me.png",
+        "selectedIconPath": "images/me1.png",
+        "text": "我的"
       }
     ]
   }   

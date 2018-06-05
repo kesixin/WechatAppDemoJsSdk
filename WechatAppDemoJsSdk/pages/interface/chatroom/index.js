@@ -131,7 +131,9 @@ Page({
       this.pushMessage(createSystemMessage('您当前未登陆...'));
     } else {
       var currentUser = Bmob.User.current();
-      this.setData({ objectId: currentUser.id });
+      var userData = wx.getStorageSync("userData")
+      this.setData({ objectId: userData.objectId });
+      console.log(userData.objectId);
       //加载默认数据
       loadDefault(this);
       this.connect();
@@ -277,42 +279,31 @@ Page({
     }
 
     var currentUser = Bmob.User.current();
-    var User = Bmob.Object.extend("_User");
-    var UserModel = new User();
-
-    var objectId = this.data.objectId;
+    var userData = wx.getStorageSync("userData");
+    var pointer = Bmob.Pointer("_User");
+    var objectId = userData.objectId;
 
     //添加一条记录
-    var Diary = Bmob.Object.extend("Chat");
-    var diary = new Diary();
-
-    UserModel.id = objectId;
-    diary.set("own", UserModel);
+    var diary = Bmob.Query("Chat");
+    var poiID = pointer.set(objectId);
+    diary.set("own", poiID);
 
     //写入用户信息方便判断谁发送的消息
-    diary.set("nickName", currentUser.get("nickName"));
-    diary.set("avatarUrl", currentUser.get("userPic"));
+    diary.set("nickName", userData.nickName);
+    diary.set("avatarUrl", userData.userPic);
 
 
 
     diary.set("content", content);
     //添加数据，第一个入口参数是null
-    diary.save(null, {
-      success: function (result) {
-        // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
-        console.log("日记创建成功, objectId:" + result.id);
-        that.setData({ inputContent: '' });
-      },
-      error: function (result, error) {
-        // 添加失败
-        console.log('创建日记失败');
+    diary.save().then(result=>{
+      console.log("日记创建成功, objectId:" + result.objectId);
+      that.setData({ inputContent: '' });
+    }).catch(err=>{
+      // 添加失败
+      console.log('创建日记失败');
 
-      }
-    });
-
-
-
-
+    })
   },
 });
 
@@ -321,10 +312,11 @@ Page({
 function welcome(that) {
 
   var currentUser = Bmob.User.current();
+  var userData = wx.getStorageSync("userData");
   var pointer = Bmob.Pointer("_User");
-  
-  var objectId = that.data.objectId;
 
+  var objectId = that.data.objectId;
+  console.log(objectId);
   var poiID = pointer.set(objectId);
 
 
@@ -333,39 +325,33 @@ function welcome(that) {
 
   diary.set("own", poiID);
   diary.set("online", 0);
-  diary.set("nickName", currentUser.get("nickName"));
+  diary.set("nickName", userData.nickName);
   //添加数据，第一个入口参数是null
-  diary.save(null, {
-    success: function (result) {
-      // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
-      console.log("日记创建成功, objectId:" + result.id);
-      that.setData({ msgObjectId: result.id });
-    },
-    error: function (result, error) {
-      // 添加失败
-      console.log('创建日记失败');
+  diary.save().then(result => {
+    // 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
+    console.log("日记创建成功, objectId:" + result.objectId);
+    that.setData({ msgObjectId: result.objectId });
+  }).catch(error=>{
+    // 添加失败
+    console.log('创建日记失败');
 
-    }
-  });
+  })
 
 }
 
 function editRow(that) {
   var objectId = that.data.msgObjectId;
-  var diary = Bmob.Object.extend("welcome");
-  var query = new Bmob.Query(diary);
+  console.log(objectId);
+  var query = Bmob.Query("welcome");
   // 这个 id 是要修改条目的 id，你在生成这个存储并成功时可以获取到，请看前面的文档
-  query.get(objectId, {
-    success: function (result) {
-      // 回调中可以取得这个 diary 对象的一个实例，然后就可以修改它了
-      result.set("online", 1);
-      result.save();
+  query.get(objectId).then(result=>{
+    // 回调中可以取得这个 diary 对象的一个实例，然后就可以修改它了
+    result.set("online", 1);
+    result.save();
       // The object was retrieved successfully.
-    },
-    error: function (object, error) {
+  }).catch(error=>{
 
-    }
-  });
+  })
 }
 
 
@@ -379,19 +365,15 @@ function loadDefault(t) {
   query.order("-createdAt");
   query.limit(3);
   // 查询所有数据
-  query.find({
-    success: function (results) {
-      console.log("共查询到 " + results.length + " 条记录");
-      // 循环处理查询到的数据
-      for (var i = results.length - 1; i >= 0; i--) {
-        var object = results[i];
-        console.log(results + ' - ' + object.get('own').id);
-        that.pushMessage(createUserMessage(object.get('content'), object, object.get('own').id === that.data.objectId));
-      }
-
-    },
-    error: function (error) {
-      console.log("查询失败: " + error.code + " " + error.message);
+  query.find().then(results=>{
+    console.log("共查询到 " + results.length + " 条记录");
+    // 循环处理查询到的数据
+    for (var i = results.length - 1; i >= 0; i--) {
+      var object = results[i];
+      console.log(results + ' - ' + object.own.objectId);
+      that.pushMessage(createUserMessage(object.content, object, object.own.objectId === that.data.objectId));
     }
-  });
+  }).catch(error=>{
+    console.log("查询失败: " + error.code + " " + error.message);
+  })
 }
